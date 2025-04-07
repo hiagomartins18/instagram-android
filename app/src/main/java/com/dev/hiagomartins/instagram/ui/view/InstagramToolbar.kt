@@ -1,0 +1,60 @@
+package com.dev.hiagomartins.instagram.ui.view
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.dev.hiagomartins.instagram.R
+
+@Composable
+fun InstagramToolbar() {
+    Box(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
+        Row(
+            Modifier
+                .padding(horizontal = 16.dp)
+                .height(56.dp)
+        ) { // Layout em Linha
+            Text(
+                text = "Instagram",
+                modifier = Modifier.weight(1f),
+                style = MaterialTheme.typography.headlineLarge
+            ) // TextView
+            Image(
+                painter = painterResource(id = R.drawable.ic_notification),
+                modifier = Modifier
+                    .size(32.dp)
+                    .padding(end = 8.dp)
+                    .align(Alignment.CenterVertically),
+                contentDescription = "Icone de Notificações na Barra de Ferramentas"
+            )
+            Image(
+                painter = painterResource(id = R.drawable.ic_message),
+                modifier = Modifier
+                    .size(32.dp)
+                    .padding(start = 8.dp)
+                    .align(Alignment.CenterVertically),
+                contentDescription = "Icone de Mensagens diretas na Barra de Ferramentas"
+            )
+        }
+
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun InstagramToolbarPreview() {
+    InstagramToolbar()
+}
