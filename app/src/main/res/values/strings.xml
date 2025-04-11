@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Instagram</string>
+    <string name="content_description_notification_icon">Icone de Notificações na Barra de Ferramentas</string>
+    <string name="content_description_message_notification">Icone de Mensagens diretas na Barra de Ferramentas</string>
+    <string name="content_description_story" formatted="true">Storie de %s não visualizado.</string>
 </resources>
