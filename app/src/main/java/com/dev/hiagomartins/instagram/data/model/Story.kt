@@ -1,4 +1,4 @@
-package com.dev.hiagomartins.instagram.data
+package com.dev.hiagomartins.instagram.data.model
 
 class Story(
     val userNickName: String,
