@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
@@ -16,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dev.hiagomartins.instagram.data.model.Feed
 import com.dev.hiagomartins.instagram.data.model.Story
+import com.dev.hiagomartins.instagram.data.repository.feedList
 import com.dev.hiagomartins.instagram.data.repository.stories
 import com.dev.hiagomartins.instagram.ui.theme.DividerColor
 import com.dev.hiagomartins.instagram.ui.theme.spacingMedium
@@ -31,16 +33,7 @@ fun HomeScreen() {
         InstagramToolbar()
         StoryList(stories = stories)
         Divider(color = DividerColor, thickness = 0.2.dp) // Cria uma linha divisória
-        FeedItem(
-            feed = Feed(
-                userNickname = "hiagopvdz",
-                localName = "Belo Horizonte",
-                userAvatar = "https://avatars.githubusercontent.com/u/104175868?v=4",
-                imageUrl = "https://avatars.githubusercontent.com/u/104175868?v=4",
-                descriptionImage = "O pai eh midia não tem jeito.",
-                postedAgo = ""
-            )
-        )
+        FeedList(feedList = feedList)
     }
 }
 
@@ -49,6 +42,15 @@ fun StoryList(stories: List<Story>) {
     LazyRow(modifier = Modifier.padding(top = spacingMedium)) {  // LazyRow -> Recycle View Horizontal -> Componente
         itemsIndexed(stories) { _, item ->  // Funciona como adapter -> map
             StoryItem(story = item)
+        }
+    }
+}
+
+@Composable
+fun FeedList(feedList: List<Feed>) {
+    LazyColumn(modifier = Modifier.padding(top = spacingMedium)) {  // LazyColumn -> Recycle View Vertical -> Componente
+        itemsIndexed(feedList) { _, item ->  // Funciona como adapter -> map
+            FeedItem(feed = item)
         }
     }
 }
