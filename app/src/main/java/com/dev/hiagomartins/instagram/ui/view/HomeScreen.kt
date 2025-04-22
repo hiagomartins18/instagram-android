@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
@@ -24,16 +25,15 @@ import com.dev.hiagomartins.instagram.ui.theme.spacingMedium
 
 @Composable
 fun HomeScreen() {
-    Column(
+    LazyColumn(
         modifier = Modifier
-            .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             .padding(top = 20.dp)
     ) { //Linear Layout com orientação vertical | Continua sendo exibido um do lado do outro.
-        InstagramToolbar()
-        StoryList(stories = stories)
-        Divider(color = DividerColor, thickness = 0.2.dp) // Cria uma linha divisória
-        FeedList(feedList = feedList)
+        item { InstagramToolbar() }
+        item { StoryList(stories = stories) }
+        item { Divider(color = DividerColor, thickness = 0.2.dp) } // Cria uma linha divisória }
+        feedList(feedList = feedList)
     }
 }
 
@@ -46,12 +46,9 @@ fun StoryList(stories: List<Story>) {
     }
 }
 
-@Composable
-fun FeedList(feedList: List<Feed>) {
-    LazyColumn(modifier = Modifier.padding(top = spacingMedium)) {  // LazyColumn -> Recycle View Vertical -> Componente
-        itemsIndexed(feedList) { _, item ->  // Funciona como adapter -> map
-            FeedItem(feed = item)
-        }
+fun LazyListScope.feedList(feedList: List<Feed>) {
+    itemsIndexed(feedList) { _, item ->
+        FeedItem(feed = item)
     }
 }
 
